@@ -30,7 +30,8 @@ Use the search field in the header to submit a query and navigate to the search 
 - The header's search form uses `useNavigate` to navigate to `/search?term=...`.
 - The search route's loader reads `term` from the URL and calls `searchPackages` before rendering the page.
 - `searchPackages` requests `https://registry.npmjs.org/-/v1/search` and maps the response to the package summary data used by the result list.
-- `SearchPage` reads the loader data with `useLoaderData` and renders each result with `PackageListItem`.
+- `SearchPage` reads the loader data with `useLoaderData` and uses TanStack Virtual to render only the visible package results. The results pane scrolls independently, and each rendered row is measured to support variable-height content.
+- `PackageListItem` displays package details and wraps its keyword badges when needed.
 
 ## Scripts
 
