@@ -1,78 +1,42 @@
-# React + TypeScript + Vite
+# React Router + API Usage Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React and TypeScript app exploring client-side routing with React Router and fetching npm package data from the public registry API.
 
-Currently, two official plugins are available:
+## Getting started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Requirements: Node.js and npm.
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```sh
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Open the local URL printed by Vite. The app makes requests to the npm registry, so package search requires an internet connection.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Available routes
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Route | Purpose |
+| --- | --- |
+| `/` | Home page (currently a placeholder). |
+| `/search?term=react` | Searches npm packages and displays the results. |
+| `/packages/:name` | Package details route (currently a placeholder). |
 
+Use the search field in the header to submit a query and navigate to the search results.
+
+## How it works
+
+- `src/App.tsx` defines a browser router, the shared root layout, and the app's routes.
+- `src/pages/Root.tsx` renders the header and the active child route through React Router's `<Outlet />`.
+- The header's search form uses `useNavigate` to navigate to `/search?term=...`.
+- The search route's loader reads `term` from the URL and calls `searchPackages` before rendering the page.
+- `searchPackages` requests `https://registry.npmjs.org/-/v1/search` and maps the response to the package summary data used by the result list.
+- `SearchPage` reads the loader data with `useLoaderData` and renders each result with `PackageListItem`.
+
+## Scripts
+
+```sh
+npm run dev      # Start the Vite development server
+npm run build    # Type-check and build for production
+npm run preview  # Preview the production build locally
+npm run lint     # Run ESLint
 ```
