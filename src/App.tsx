@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SearchPage from "./pages/SearchPage";
-import DetailsPage from "./pages/DetailsPage";
 import Root from "./pages/Root";
 import HomePage from "./pages/HomePage";
+import SearchPage from "./pages/search/SearchPage";
+import { searchLoader } from "./pages/search/searchLoader";
+import DetailsPage from "./pages/DetailsPage";
 
 const route = createBrowserRouter([
   {
@@ -16,21 +17,7 @@ const route = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage />,
-        loader: async ({ request }) => {
-          console.log(request);
-          const { searchParams } = new URL(request.url);
-          const term = searchParams.get("term");
-
-          if (!term) {
-            throw new Error("A search term should br provided.");
-          }
-
-          const res = await fetch(
-            `https://registry.npmjs.org/-/v1/search?text=${term}`,
-          );
-          const data = await res.json();
-          return data.objects;
-        },
+        loader: searchLoader,
       },
       {
         path: "/packages/:name",
