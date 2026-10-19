@@ -24,7 +24,7 @@ function PackageListItem({ pack }: PackageListItemProps) {
           {pack.name}
         </Link>
         <p className="text-sm text-gray-500">{pack.description}</p>
-        <div className="flex gap-1">{renderedKeywords}</div>
+        <div className="flex flex-wrap gap-1">{renderedKeywords}</div>
       </div>
       <div className="mr-6">
         <Link
