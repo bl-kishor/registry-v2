@@ -20,7 +20,7 @@ function HomePage() {
           </div>
         </div>
         <Link
-          to={`/packages/${p.name}`}
+          to={`/packages/${encodeURIComponent(p.name)}`}
           className="w-full rounded border border-gray-900 bg-gray-900 px-3 py-2 text-center text-sm font-medium text-white transition hover:bg-gray-700"
         >
           View

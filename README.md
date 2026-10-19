@@ -2,6 +2,10 @@
 
 A small React + TypeScript demo app that explores client-side routing and live package data from the public npm registry API. It lets users browse featured packages, search for npm libraries, and open package detail pages with metadata such as description, license, author, maintainers, and keywords.
 
+## Live demo
+
+Hosted on Vercel: [registry-mocha-phi.vercel.app](https://registry-mocha-phi.vercel.app/)
+
 ## Overview
 
 This project is a front-end-only demo built to practice:

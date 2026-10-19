@@ -20,7 +20,10 @@ function PackageListItem({ pack }: PackageListItemProps) {
   return (
     <div className="border p-4 rounded flex items-center justify-between">
       <div className="flex flex-col gap-2">
-        <Link to={`/packages/${pack.name}`} className="font-bold text-xl">
+        <Link
+          to={`/packages/${encodeURIComponent(pack.name)}`}
+          className="font-bold text-xl"
+        >
           {pack.name}
         </Link>
         <p className="text-sm text-gray-500">{pack.description}</p>
@@ -29,7 +32,7 @@ function PackageListItem({ pack }: PackageListItemProps) {
       <div className="mr-6">
         <Link
           className="rounded px-2 py-3 bg-black text-white cursor-pointer text-lg"
-          to={`/packages/${pack.name}`}
+          to={`/packages/${encodeURIComponent(pack.name)}`}
         >
           View
         </Link>

@@ -13,7 +13,9 @@ export interface DetailsLoaderResult {
 export async function detailsLoader({
   params,
 }: LoaderArgs): Promise<DetailsLoaderResult> {
-  const { name } = params;
+  const name = params["*"]
+    ? `${params.name}/${params["*"]}`
+    : params.name;
 
   if (!name) {
     throw new Error("Package name is required");

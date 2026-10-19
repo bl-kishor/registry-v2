@@ -33,7 +33,7 @@ const route = createBrowserRouter([
         ),
       },
       {
-        path: "/packages/:name",
+        path: "/packages/:name/*",
         element: <DetailsPage />,
         loader: detailsLoader,
       },
