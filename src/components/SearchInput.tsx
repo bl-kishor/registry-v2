@@ -8,7 +8,11 @@ function SearchInput() {
 
   const handleSubmit = (event: React.SubmitEvent<HTMLFormElement>) => {
     event.preventDefault();
-    navigate(`/search?term=${term}`);
+    const searchTerm = term.trim();
+    if (!searchTerm) return;
+
+    navigate(`/search?term=${encodeURIComponent(searchTerm)}`);
+    setTerm("");
   };
 
   return (
