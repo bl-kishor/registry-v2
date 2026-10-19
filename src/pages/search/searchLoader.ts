@@ -9,6 +9,7 @@ export async function searchLoader({
 }: {
   request: Request;
 }): Promise<SearchLoaderResult> {
+  console.log(request);
   const { searchParams } = new URL(request.url);
   const term = searchParams.get("term");
 

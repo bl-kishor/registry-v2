@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./pages/Root";
+import Skeleton from "./components/Skeleton";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/search/SearchPage";
 import { searchLoader } from "./pages/search/searchLoader";
-import DetailsPage from "./pages/DetailsPage";
-import Skeleton from "./components/Skeleton";
+import DetailsPage from "./pages/details/DetailsPage";
+import { detailsLoader } from "./pages/details/detailsLoader";
 
 const route = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const route = createBrowserRouter([
       {
         path: "/packages/:name",
         element: <DetailsPage />,
+        loader: detailsLoader,
       },
     ],
   },
