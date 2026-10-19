@@ -86,7 +86,7 @@ src/
 
 ## Getting started
 
-Requirements: Node.js 18+ and npm.
+Requirements: Node.js 20.19+ or 22.12+ and npm.
 
 ```bash
 npm install
