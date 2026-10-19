@@ -19,7 +19,7 @@ Open the local URL printed by Vite. The app makes requests to the npm registry, 
 | --- | --- |
 | `/` | Home page (currently a placeholder). |
 | `/search?term=react` | Searches npm packages and displays the results. |
-| `/packages/:name` | Package details route (currently a placeholder). |
+| `/packages/:name` | Displays metadata for the named npm package. |
 
 Use the search field in the header to submit a query and navigate to the search results.
 
@@ -32,6 +32,7 @@ Use the search field in the header to submit a query and navigate to the search 
 - `searchPackages` requests `https://registry.npmjs.org/-/v1/search` and maps the response to the package summary data used by the result list.
 - `SearchPage` reads the loader data with `useLoaderData` and uses TanStack Virtual to render only the visible package results. The results pane scrolls independently, and each rendered row is measured to support variable-height content.
 - `PackageListItem` displays package details and wraps its keyword badges when needed.
+- The package details route loads metadata for the package name from the npm registry and displays its description and license, plus its author, maintainers, and unique keywords when available.
 
 ## Scripts
 
